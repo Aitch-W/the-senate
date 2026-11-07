@@ -18,6 +18,9 @@ function load(key,fallback){try{return JSON.parse(localStorage.getItem(key))??fa
 function save(key,value){try{localStorage.setItem(key,JSON.stringify(value));return true}catch{toast('浏览器未能保存记录，请检查存储权限');return false}}
 let ledger=load('senate-ledger-v1',{balance:0,initialized:false,entries:[],history:[]});
 if(!Array.isArray(ledger.entries)||!Array.isArray(ledger.history))ledger={balance:0,initialized:false,entries:[],history:[]};
+const ACHIEVEMENTS_SEEN_KEY='senate-achievements-seen-v1';
+let achievementSeen=load(ACHIEVEMENTS_SEEN_KEY,null);
+let achievementToastQueue=[],achievementToastActive=false;
 let credentials=load('senate-session-v1',null),room=null,poll=null,selectedRole=null,tab='history',routing=0;
 let profile=load('senate-profile-v1',null)||{};
 profile={name:profile.name||'无名公民',motto:profile.motto||'先分辨「想要」与「需要」，再把决定交给时间。',since:profile.since||new Date().toISOString()};
@@ -43,7 +46,7 @@ const homeVisible=()=>{const el=$('#home-view');return !!el&&!el.hidden;};
 const dialogOpen=()=>!!document.querySelector('dialog[open]');
 function frozen(){return ledger.history.filter(h=>h.decision?.vote==='暂缓'&&new Date(h.freezeUntil)>new Date()).reduce((n,h)=>n+h.price,0)}
 function available(){return Math.round((ledger.balance-frozen())*100)/100}
-function persistLedger(){save('senate-ledger-v1',ledger)}
+function persistLedger(){save('senate-ledger-v1',ledger);checkAchievements()}
 function entry(kind,amount,note){ledger.balance=Math.round((ledger.balance+(kind==='income'?amount:-amount))*100)/100;ledger.entries.unshift({id:crypto.randomUUID(),kind,amount,note,at:new Date().toISOString()});}
 async function api(route,{method='GET',body,friendToken}={}){const headers={'Content-Type':'application/json'};if(friendToken)headers['X-Friend-Token']=friendToken;else if(credentials)headers.Authorization=`Bearer ${credentials.ownerToken}`;const response=await fetch(route,{method,headers,body:body?JSON.stringify(body):undefined});let data;try{data=await response.json()}catch{throw Error('会场连接中断，请确认本地服务仍在运行')}if(!response.ok)throw Error(data.error||'操作失败');return data;}
 const roomApi=(action,body)=>api(`/api/rooms/${credentials.id}${action?'/'+action:''}`,{method:body===undefined?'GET':'POST',body});
@@ -134,6 +137,41 @@ function achievementsMarkup(){
   const medals=evaluateAchievements(ledger),unlocked=medals.filter(m=>m.unlocked).length;
   return `<section class="achievement-gallery" id="achievement-gallery" aria-labelledby="achievement-title"><header class="achievement-heading"><div><p class="eyebrow">HONORES · THE SEVEN VIRTUES</p><h2 id="achievement-title">成就勋章</h2><p>每一次认真思考，都有迹可循。点击勋章，查看它的故事与达成条件。</p></div><div class="achievement-counter" aria-label="已点亮 ${unlocked} 枚，共 7 枚"><strong>${unlocked}</strong><span>/ 7</span> 已点亮</div></header><div class="achievement-grid">${medals.map(m=>`<button type="button" class="achievement-card ${m.unlocked?'is-unlocked':'is-locked'}" data-action="achievement" data-achievement="${m.id}" aria-label="${esc(m.name)}，${m.unlocked?'已点亮':'未解锁'}。${esc(m.condition)}当前进度 ${m.progress}/${m.target}"><img class="achievement-art" src="${m.icon}" width="160" height="160" loading="lazy" decoding="async" alt="${esc(m.symbol)}勋章"><span class="achievement-state">${m.unlocked?'✦ 已点亮':'尚未解锁'}</span><strong>${esc(m.name)}</strong><span class="achievement-condition">${esc(m.condition)}</span><progress class="achievement-meter" max="${m.target}" value="${m.progress}" aria-label="${esc(m.name)}达成进度"></progress><span class="achievement-progress">${m.progress} / ${m.target} ${m.unit}</span></button>`).join('')}</div><p class="achievement-footnote">依据当前浏览器中的议会与账单记录自动点亮；已有历史同样计入。冷静期结束或重新决定后，已达成的「交给时间」仍然保留。</p></section>`;
 }
+function ensureAchievementToastHost(){
+  let host=$('#achievement-toasts');
+  if(!host){host=document.createElement('div');host.id='achievement-toasts';host.className='achievement-toasts';host.setAttribute('aria-live','polite');document.body.appendChild(host)}
+  return host;
+}
+function pumpAchievementToasts(){
+  if(achievementToastActive||!achievementToastQueue.length)return;
+  const medal=achievementToastQueue.shift();
+  achievementToastActive=true;
+  const el=document.createElement('div');
+  el.className='achievement-toast';el.setAttribute('role','status');
+  el.innerHTML=`<span class="achievement-toast-medal"><img src="${medal.icon}" alt="" width="52" height="52"></span><span class="achievement-toast-copy"><small>ACHIEVEMENT UNLOCKED · 成就解锁</small><strong>${esc(medal.name)}</strong><em>${esc(medal.latin)} · 勋章已点亮</em></span><button type="button" class="achievement-toast-close" aria-label="关闭成就提示">×</button>`;
+  ensureAchievementToastHost().appendChild(el);
+  let closed=false,timer;
+  const finish=()=>{if(closed)return;closed=true;clearTimeout(timer);el.classList.add('is-leaving');setTimeout(()=>{el.remove();achievementToastActive=false;pumpAchievementToasts()},360)};
+  timer=setTimeout(finish,5200);
+  el.querySelector('.achievement-toast-close').addEventListener('click',finish);
+}
+function queueAchievementToast(medal){
+  achievementToastQueue.push(medal);
+  pumpAchievementToasts();
+}
+function checkAchievements(){
+  const medals=evaluateAchievements(ledger);
+  if(!Array.isArray(achievementSeen)){
+    achievementSeen=medals.filter(m=>m.unlocked).map(m=>m.id);
+    save(ACHIEVEMENTS_SEEN_KEY,achievementSeen);
+    return;
+  }
+  const newly=medals.filter(m=>m.unlocked&&!achievementSeen.includes(m.id));
+  if(!newly.length)return;
+  achievementSeen=[...achievementSeen,...newly.map(m=>m.id)];
+  save(ACHIEVEMENTS_SEEN_KEY,achievementSeen);
+  newly.forEach(queueAchievementToast);
+}
 function showAchievement(id){
   const m=evaluateAchievements(ledger).find(m=>m.id===id);if(!m)return;
   $('#detail-content').innerHTML=`<article class="achievement-detail ${m.unlocked?'is-unlocked':'is-locked'}"><p class="eyebrow">${m.latin}</p><img class="achievement-detail-art" src="${m.icon}" alt="${esc(m.symbol)}勋章" width="230" height="230"><h2>${esc(m.name)}</h2><p class="achievement-detail-symbol">${esc(m.symbol)}</p><p class="achievement-detail-condition">${esc(m.condition)}</p><p class="achievement-detail-status">${m.unlocked?'✦ 勋章已点亮':'尚未解锁 · 每一步认真，都算数'}<br>当前进度：${m.progress} / ${m.target} ${m.unit}</p><progress class="achievement-meter" max="${m.target}" value="${m.progress}" aria-label="${esc(m.name)}达成进度"></progress></article>`;
@@ -188,7 +226,7 @@ document.addEventListener('submit',async e=>{const form=e.target;if(!['proposal-
  if(form.id==='friend-form'){await api(`/api/rooms/${form.dataset.id}/friend`,{method:'POST',body:b,friendToken:form.dataset.token});await renderFriend(form.dataset.id,form.dataset.token);toast('你的观点已封存');}
  if(form.id==='friend-question-form'){await api(`/api/rooms/${form.dataset.id}/ask`,{method:'POST',body:{name:b.name,question:b.question},friendToken:form.dataset.token});await renderFriend(form.dataset.id,form.dataset.token);toast('你的质询已提交');}
  }catch(err){if(form.id==='proposal-form')$('#proposal-error').textContent=err.message;else toast(err.message)}finally{button.disabled=false;}});
-window.addEventListener('hashchange',route);window.addEventListener('pagehide',()=>clearInterval(poll));window.addEventListener('storage',e=>{if(e.key==='senate-ledger-v1'){ledger=load('senate-ledger-v1',ledger);if(location.hash==='#ledger')renderLedger();if(location.hash==='#profile')renderProfile()}});
+window.addEventListener('hashchange',route);window.addEventListener('pagehide',()=>clearInterval(poll));window.addEventListener('storage',e=>{if(e.key==='senate-ledger-v1'){ledger=load('senate-ledger-v1',ledger);achievementSeen=load(ACHIEVEMENTS_SEEN_KEY,achievementSeen);checkAchievements();if(location.hash==='#ledger')renderLedger();if(location.hash==='#profile')renderProfile()}else if(e.key===ACHIEVEMENTS_SEEN_KEY){achievementSeen=load(ACHIEVEMENTS_SEEN_KEY,achievementSeen)}});
 function wheelPager(event){if(!homeVisible()||dialogOpen()||event.ctrlKey)return;event.preventDefault();if(homePager.locked)return;const ax=Math.abs(event.deltaX),ay=Math.abs(event.deltaY);if(ax>ay*1.1&&homePager.page===1){if(ax>12)slideBy(event.deltaX>0?1:-1);return}homePager.wheelAcc+=event.deltaY;clearTimeout(homePager.wheelTimer);homePager.wheelTimer=setTimeout(()=>{homePager.wheelAcc=0},170);if(Math.abs(homePager.wheelAcc)>=24){const dir=homePager.wheelAcc>0?1:-1;homePager.wheelAcc=0;goPage(homePager.page+dir)}}
 document.addEventListener('wheel',wheelPager,{passive:false});
 let pagerPointer=null;
@@ -198,4 +236,4 @@ function endPagerPointer(){if(!pagerPointer)return;const{dx,dy}=pagerPointer;pag
 document.addEventListener('pointerup',endPagerPointer,{passive:true});
 document.addEventListener('pointercancel',endPagerPointer,{passive:true});
 document.addEventListener('keydown',event=>{if(!homeVisible()||dialogOpen()||event.altKey||event.ctrlKey||event.metaKey)return;if(event.target instanceof Element&&event.target.matches('input,textarea,select'))return;if(event.key==='ArrowDown'||event.key==='PageDown'){event.preventDefault();goPage(homePager.page+1)}else if(event.key==='ArrowUp'||event.key==='PageUp'){event.preventDefault();goPage(homePager.page-1)}else if(event.key==='ArrowRight'&&homePager.page===1){event.preventDefault();slideBy(1)}else if(event.key==='ArrowLeft'&&homePager.page===1){event.preventDefault();slideBy(-1)}});
-applyPrefs();splitHero();renderSlideVoices(featuredPack);setSlide(0);hydrateIcons();route();initHeroLive();
+applyPrefs();splitHero();renderSlideVoices(featuredPack);setSlide(0);hydrateIcons();route();initHeroLive();checkAchievements();

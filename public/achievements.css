@@ -43,3 +43,23 @@
 .achievement-detail .achievement-meter{margin:16px auto 0;max-width:300px;height:4px}
 @media(max-width:1000px){.achievement-grid{gap:14px}.achievement-art{width:130px}.achievement-condition{min-height:76px}.profile-title .profile-intro{gap:16px}}
 @media(max-width:700px){.achievement-gallery{margin-top:32px;padding-top:26px}.achievement-heading{align-items:start;gap:12px}.achievement-heading h2{font-size:25px;letter-spacing:3px}.achievement-heading p{font-size:10px;letter-spacing:.4px;max-width:235px}.achievement-counter{font-size:9px;white-space:nowrap;padding-top:22px;letter-spacing:0}.achievement-counter strong{font-size:28px}.achievement-counter span{font-size:16px;margin:0 3px}.achievement-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 12px}.achievement-card{padding:15px 7px 18px}.achievement-art{width:125px}.achievement-card strong{font-size:16px;letter-spacing:1px}.achievement-condition{font-size:10px;min-height:76px;margin-top:7px}.achievement-state{font-size:8px;letter-spacing:1px}.achievement-progress{font-size:8px;letter-spacing:.2px}.profile-title .profile-intro>p{display:none}.profile-achievement-link{font-size:11px;letter-spacing:1px}.achievement-detail-art{width:190px}.achievement-detail h2{font-size:26px}.achievement-detail-condition{font-size:13px}.achievement-footnote{font-size:9px}}
+
+/* First-unlock notification: a small gilded rectangle in the bottom-right. */
+.achievement-toasts{position:fixed;right:clamp(14px,3vw,34px);bottom:clamp(14px,3vw,30px);z-index:180;display:flex;flex-direction:column;gap:10px;align-items:flex-end;pointer-events:none;max-width:min(360px,calc(100vw - 28px))}
+.achievement-toast{position:relative;isolation:isolate;pointer-events:auto;display:flex;align-items:center;gap:13px;width:min(342px,calc(100vw - 28px));padding:12px 13px 12px 12px;background:linear-gradient(135deg,#221b13f7,#2c2418 55%,#1b1610f7);border:1px solid #c3a15f;box-shadow:0 18px 45px #000a,inset 0 0 0 1px #f2d69a1a,0 0 30px #b98c3b12;color:#f2e5c7;overflow:hidden;transform:translateY(14px) scale(.98);opacity:0;animation:achievementToastIn .55s cubic-bezier(.18,.8,.22,1) forwards}
+.achievement-toast:before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(#f4d89a,#b4873e 45%,transparent);opacity:.9}
+.achievement-toast:after{content:'';position:absolute;inset:0;z-index:0;background:linear-gradient(112deg,transparent 20%,#f5d99b12 40%,transparent 60%);transform:translateX(-120%);animation:achievementSweep 3.6s ease-in-out .4s infinite;pointer-events:none}
+.achievement-toast-medal{flex:none;width:52px;height:52px;display:grid;place-items:center;position:relative;z-index:1}
+.achievement-toast-medal img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 5px 9px #0008) saturate(.9)}
+.achievement-toast-copy{display:flex;flex-direction:column;min-width:0;gap:3px;position:relative;z-index:1}
+.achievement-toast-copy small{font:8px/1.4 Georgia,serif;letter-spacing:2px;color:#b7985d;white-space:nowrap}
+.achievement-toast-copy strong{font:17px/1.35 SimSun,serif;letter-spacing:2px;color:#f4e6c9;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.achievement-toast-copy em{font:9px/1.4 Georgia,SimSun,serif;letter-spacing:1.4px;color:#9e865f;font-style:normal;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.achievement-toast-close{position:absolute;right:5px;top:3px;z-index:2;width:24px;height:24px;display:grid;place-items:center;color:#a99268;font:16px/1 Georgia,serif;opacity:.7;transition:opacity .2s,color .2s}
+.achievement-toast-close:hover{opacity:1;color:#f0d6a2}
+.achievement-toast.is-leaving{animation:achievementToastOut .35s ease forwards}
+@keyframes achievementToastIn{to{transform:translateY(0) scale(1);opacity:1}}
+@keyframes achievementToastOut{to{transform:translateY(8px) scale(.98);opacity:0}}
+@keyframes achievementSweep{0%,55%{transform:translateX(-120%)}80%,100%{transform:translateX(120%)}}
+@media(max-width:700px){.achievement-toasts{right:12px;bottom:12px;left:12px;max-width:none}.achievement-toast{width:100%;padding:10px 12px}.achievement-toast-medal{width:44px;height:44px}.achievement-toast-copy strong{font-size:15px}.achievement-toast-copy small{font-size:7px;letter-spacing:1.4px}.achievement-toast-copy em{font-size:8px}}
+@media(prefers-reduced-motion:reduce){.achievement-toast,.achievement-toast.is-leaving{animation:none;opacity:1;transform:none}.achievement-toast:after{animation:none;display:none}}

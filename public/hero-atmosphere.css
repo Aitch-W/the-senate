@@ -1,13 +1,39 @@
-/* Small gold motes and quiet ripples: only transform and opacity animate. */
-.hero-atmosphere{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden;mix-blend-mode:screen;contain:layout paint}
+/* Gilded dust, soft light shafts and slow breathing rings — compositor-only. */
+.hero-atmosphere{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden;mix-blend-mode:screen;contain:layout paint;isolation:isolate}
 .hero-atmosphere>*{pointer-events:none;animation-play-state:paused!important}
 .hero.ambient-running .hero-atmosphere>*{animation-play-state:running!important}
-.hero-light-breath{position:absolute;inset:0;background:radial-gradient(ellipse at 58% 22%,#e8bd7424,transparent 52%),radial-gradient(ellipse at 50% 80%,#c3924220,transparent 54%);animation:heroLightBreathe 12s ease-in-out infinite;opacity:.08}
-.hero-light-mote{position:absolute;left:var(--px);top:var(--py);width:var(--mote-size);height:var(--mote-size);background:#f1d799;border-radius:50%;box-shadow:0 0 5px 1px #e1b15b3d;opacity:0;animation:heroMoteDrift var(--life) linear var(--delay) infinite}
-.hero-breath-wave{position:absolute;left:50%;top:72%;width:clamp(550px,76vw,1450px);height:clamp(160px,24vw,360px);border:1px solid #dcb879;border-radius:50%;opacity:0;mask-image:linear-gradient(90deg,transparent,#000 24%,#000 76%,transparent);animation:heroWaveBreathe 15s ease-in-out var(--wave-delay) infinite}
-@keyframes heroMoteDrift{0%{transform:translate3d(0,12px,0);opacity:0}18%{opacity:var(--glimmer)}60%{opacity:var(--glimmer)}100%{transform:translate3d(var(--drift),calc(var(--lift)*-1),0);opacity:0}}
-@keyframes heroLightBreathe{0%,100%{opacity:.08}50%{opacity:.24}}
-@keyframes heroWaveBreathe{0%{transform:translate(-50%,-50%) scale(.78,.9);opacity:0}25%{opacity:.09}55%{opacity:.065}100%{transform:translate(-50%,-50%) scale(1.22,1.13);opacity:0}}
-@media(max-width:767px){.hero-light-mote:nth-of-type(n+18){display:none}.hero-breath-wave{top:75%;width:680px;height:220px}.hero-light-mote{box-shadow:0 0 4px #e1b15b33}}
+.hero-atmosphere:before{content:'';position:absolute;inset:-12%;background:radial-gradient(ellipse at 50% 42%,#f5d79a12,transparent 46%),linear-gradient(112deg,transparent 28%,#f3d99c0d 42%,transparent 60%);filter:blur(28px);animation:heroVeil 19s ease-in-out infinite;opacity:.72}
+
+.hero-light-breath{position:absolute;inset:0;background:radial-gradient(ellipse at 58% 20%,#f0c98630,transparent 48%),radial-gradient(ellipse at 48% 78%,#c9954424,transparent 52%);filter:blur(2px);opacity:.1;animation:heroLightBreathe 13s ease-in-out infinite}
+
+.hero-light-shaft{position:absolute;top:-30%;left:-8%;width:48%;height:160%;background:linear-gradient(180deg,transparent 4%,#f3d79a1f 30%,#f7e3b20d 58%,transparent 88%);transform:rotate(var(--shaft-angle,17deg));filter:blur(24px);opacity:.2;animation:heroShaft 18s ease-in-out var(--shaft-delay,0s) infinite;will-change:transform,opacity}
+.hero-light-shaft.is-right{left:auto;right:-14%;width:43%;opacity:.14;animation-delay:var(--shaft-delay,-8s)}
+.hero-light-shaft.is-center{left:37%;width:24%;opacity:.1;filter:blur(30px);animation-delay:var(--shaft-delay,-4s)}
+
+.hero-breath-wave{position:absolute;left:50%;top:var(--wave-y,76%);width:var(--wave-w,70vw);height:var(--wave-h,180px);border:1px solid #e4bf76;border-radius:50%;opacity:0;transform:translate(-50%,-50%) scale(.8,.86);mask-image:linear-gradient(90deg,transparent,#000 17%,#000 83%,transparent);box-shadow:0 0 22px #e0b25b0b,inset 0 0 20px #f0d39d0c;animation:heroWaveBreathe var(--wave-life,18s) cubic-bezier(.37,0,.2,1) var(--wave-delay,0s) infinite;will-change:transform,opacity}
+
+.hero-light-mote{position:absolute;left:var(--px);top:var(--py);width:var(--mote-size);height:var(--mote-size);border-radius:50%;background:radial-gradient(circle at 35% 32%,#fff9e6,#f2d797 36%,#d9a957 66%,transparent 74%);box-shadow:0 0 6px 1px #e8bd6b2e;opacity:0;filter:blur(var(--blur,0px));animation:heroMoteDrift var(--life,18s) linear var(--delay,0s) infinite;mix-blend-mode:screen;will-change:transform,opacity}
+.hero-light-mote.mid{box-shadow:0 0 9px 1px #e8bd6b28}
+.hero-light-mote.near{box-shadow:0 0 14px 2px #e8bd6b2d}
+.hero-light-mote.star:before,.hero-light-mote.star:after{content:'';position:absolute;left:50%;top:50%;background:linear-gradient(90deg,transparent,#fff4c8,#e8bf72,transparent);pointer-events:none}
+.hero-light-mote.star:before{width:17px;height:1px;transform:translate(-50%,-50%)}
+.hero-light-mote.star:after{width:1px;height:17px;transform:translate(-50%,-50%);background:linear-gradient(180deg,transparent,#fff4c8,#e8bf72,transparent)}
+
+.hero-bokeh{position:absolute;left:var(--px);top:var(--py);width:var(--size);height:var(--size);border-radius:50%;background:radial-gradient(circle,#f8e1a52c,#d9a94b0a 46%,transparent 70%);filter:blur(var(--blur,8px));opacity:0;animation:heroBokeh var(--life,24s) ease-in-out var(--delay,0s) infinite;will-change:transform,opacity}
+
+@keyframes heroMoteDrift{0%{transform:translate3d(0,16px,0) scale(.72);opacity:0}12%{opacity:var(--glimmer,.32)}55%{opacity:var(--glimmer,.32)}100%{transform:translate3d(var(--drift,0px),var(--lift,-90px),0) scale(1.06);opacity:0}}
+@keyframes heroBokeh{0%{transform:translate3d(0,12px,0) scale(.82);opacity:0}25%{opacity:.18}65%{opacity:.09}100%{transform:translate3d(var(--drift,10px),-85px,0) scale(1.16);opacity:0}}
+@keyframes heroLightBreathe{0%,100%{opacity:.08}50%{opacity:.26}}
+@keyframes heroShaft{0%,100%{opacity:.14;transform:rotate(var(--shaft-angle,17deg)) translateX(-3%)}50%{opacity:.42;transform:rotate(var(--shaft-angle,17deg)) translateX(4%)}}
+@keyframes heroWaveBreathe{0%{transform:translate(-50%,-50%) scale(.78,.86);opacity:0}18%{opacity:.2}52%{opacity:.09}100%{transform:translate(-50%,-50%) scale(1.26,1.16);opacity:0}}
+@keyframes heroVeil{0%,100%{opacity:.45}50%{opacity:.82}}
+
+@media(max-width:767px){
+  .hero-atmosphere:before{inset:-20%}
+  .hero-light-mote:nth-of-type(n+27){display:none}
+  .hero-bokeh{display:none}
+  .hero-light-shaft{opacity:.1}
+  .hero-breath-wave{width:96vw;height:140px}
+}
 @media(prefers-reduced-motion:reduce){.hero-atmosphere{display:none!important}}
 html.no-motion .hero-atmosphere{display:none!important}
