@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#292016"><meta name="description" content="The Senate 元老院消费决策议会。七位先贤的轮番质询，替你分辨想要与需要。"><title>The Senate · 元老院消费决策议会</title><link rel="icon" href="/assets/temple.svg" type="image/svg+xml"><script>document.documentElement.classList.add('js-pager')</script><link rel="stylesheet" href="/assets/tailwind.css"><link rel="stylesheet" href="/style.css"><link rel="stylesheet" href="/depth-scroll.css"><link rel="stylesheet" href="/forum.css"><script type="module" src="/app.js"></script></head>
+<body>
+<a class="skip-link" href="#main">跳至主要内容</a>
+<header id="header" class="site-header flex items-center justify-between"><a class="brand flex items-center" href="#home"><img src="/assets/temple.svg" alt="" width="31" height="31"><span>The Senate</span></a><nav aria-label="主导航" class="flex items-center"><a href="#home" data-nav="home">首页</a><a href="#forum" data-nav="forum">元老院</a><a href="#ledger" data-nav="ledger">账单</a><a href="#profile" data-nav="profile">个人主页</a></nav><span class="edition">EST. MMXXVI</span><button type="button" class="pref-toggle" id="motion-toggle" data-action="toggle-motion" aria-pressed="false" aria-label="关闭动画与音效" title="关闭动画与音效"><span class="pref-dot"></span><span class="pref-text">动效 开</span><span class="pref-short" aria-hidden="true">动</span></button></header>
+<main id="main">
+<div id="home-view" class="view">
+<div id="home-pager" class="home-pager" data-page="0">
+ <div class="pager-track" id="pager-track">
+  <section class="pager-screen hero-screen is-active animate" data-screen="0" aria-label="第一页：The Senate">
+   <div class="hero">
+    <div class="hero-art" aria-hidden="true">
+     <img class="hero-layer hero-layer-background" src="/assets/hero/background.png" alt="" fetchpriority="high" decoding="async">
+     <img class="hero-layer hero-layer-people" src="/assets/hero/people.png" alt="" decoding="async">
+     <img class="hero-layer hero-layer-table" src="/assets/hero/table.png" alt="" decoding="async">
+    </div><div class="hero-shade" aria-hidden="true"></div>
+    <div class="hero-content">
+     <p class="eyebrow hero-eyebrow" data-split="chars">SENATVS · CONSILIVM · DE EXPENSIS</p>
+     <p class="chinese-caption reveal" style="--d:2"><span></span>元老院消费决策议会<span></span></p>
+     <h1 id="hero-title" data-split="title"><em>The</em> <span>Senate</span></h1>
+     <p class="hero-lead reveal" style="--d:4">入席先贤的轮番质询，替你分辨「想要」与「需要」</p>
+     <p class="hero-note reveal" style="--d:5">投票仅供参考，最终决定权始终在你</p>
+     <a class="summon-btn reveal" style="--d:6" href="#forum" data-goto-page="2">进 入 元 老 院 <i data-icon="arrow-right"></i></a>
+    </div>
+    <button class="explore" type="button" data-pager="next" aria-label="翻到第二页：一场议会，四步深思"><span class="scroll-stem"></span>向 下 探 索</button>
+    <div class="hero-corner">A MOMENT OF THOUGHT,<br>A BETTER DECISION.</div>
+   </div>
+  </section>
+
+  <section class="pager-screen ritual-screen" data-screen="1" aria-label="第二页：一场议会，四步深思">
+   <div class="act-head">
+    <div class="act-title">
+     <p class="eyebrow reveal" style="--d:0">II / THE ASSEMBLY</p>
+     <h2 class="reveal" style="--d:1">一场议会，四步深思</h2>
+     <p class="act-sub reveal" style="--d:2">把一时心动，交给一场深思</p>
+    </div>
+    <div class="act-tabs" role="tablist" aria-label="议会流程">
+     <button type="button" class="active" data-slide-to="0" role="tab" aria-selected="true"><b>01</b><span>召集</span></button>
+     <button type="button" data-slide-to="1" role="tab" aria-selected="false"><b>02</b><span>质询</span></button>
+     <button type="button" data-slide-to="2" role="tab" aria-selected="false"><b>03</b><span>表态</span></button>
+     <button type="button" data-slide-to="3" role="tab" aria-selected="false"><b>04</b><span>裁决</span></button>
+     <button type="button" data-slide-to="4" role="tab" aria-selected="false"><b>05</b><span>七贤</span></button>
+    </div>
+   </div>
+   <div class="ritual-slider" id="ritual-slider">
+    <div class="ritual-track" id="ritual-track">
+     <article class="ritual-slide is-active" data-slide="0">
+      <div class="slide-visual">
+       <figure class="shot-frame">
+        <img src="/assets/shots/convene.jpg" alt="召集元老院：填写商品、价格与购买理由">
+        <figcaption><span>01</span> 呈上你的心动</figcaption>
+       </figure>
+       <span class="shot-caption">ASSEMBLY · PROPOSAL</span>
+      </div>
+      <div class="slide-inner">
+       <p class="slide-eyebrow reveal" style="--d:0">STEP 01 · A NEW ASSEMBLY</p>
+       <h3 class="reveal" style="--d:1">呈上你的心动</h3>
+       <p class="slide-copy reveal" style="--d:2">填写商品、价格与可用闲钱，说清楚为什么想买。默认七位先贤入席，也可以把任意席位换成好友。</p>
+       <ul class="slide-points reveal" style="--d:3"><li>商品 / 价格 / 可用闲钱</li><li>七席默认入席，可替换好友</li><li>进入会场后席位锁定</li></ul>
+       <p class="slide-tag reveal" style="--d:4">WHAT DO YOU WANT TO BUY ?</p>
+       <button class="slide-more reveal" style="--d:5" type="button" data-action="new">用一件商品开始 <i data-icon="arrow-right"></i></button>
+      </div>
+     </article>
+     <article class="ritual-slide" data-slide="1">
+      <div class="slide-visual">
+       <figure class="shot-frame">
+        <img src="/assets/shots/inquiry.jpg" alt="苏格拉底的质询界面">
+        <figcaption><span>02</span> 七次质询</figcaption>
+       </figure>
+       <span class="shot-caption">SEVEN QUESTIONS · ONE HONEST ANSWER</span>
+      </div>
+      <div class="slide-inner">
+       <p class="slide-eyebrow reveal" style="--d:0">STEP 02 · THE INQUIRY</p>
+       <h3 class="reveal" style="--d:1">回答七次质询</h3>
+       <p class="slide-copy reveal" style="--d:2">依次回应七位议员的问题。没有标准答案，只需诚实地把模糊的冲动，说成具体的话。</p>
+       <ul class="slide-points reveal" style="--d:3"><li>每次一位议员发问</li><li>回答会封存在当前会场</li><li>七问结束才进入表决</li></ul>
+       <p class="slide-tag reveal" style="--d:4">SEVEN QUESTIONS · ONE HONEST ANSWER</p>
+       <button class="slide-more reveal" style="--d:5" type="button" data-slide-next>下一席：听见不同观点 <i data-icon="arrow-right"></i></button>
+      </div>
+     </article>
+     <article class="ritual-slide" data-slide="2">
+      <div class="slide-visual">
+       <figure class="shot-frame">
+        <img src="/assets/shots/vote.jpg" alt="议会表态与票数统计界面">
+        <figcaption><span>03</span> 独立表态</figcaption>
+       </figure>
+       <span class="shot-caption">SEALED UNTIL EVERY VOICE IS HEARD</span>
+      </div>
+      <div class="slide-inner">
+       <p class="slide-eyebrow reveal" style="--d:0">STEP 03 · THE SEALED BALLOT</p>
+       <h3 class="reveal" style="--d:1">听见不同观点</h3>
+       <p class="slide-copy reveal" style="--d:2">先贤从各自的角度给出观点，在「买 / 暂缓 / 不买」之间表态。含好友席时，全员提交后一起揭晓。</p>
+       <ul class="slide-points reveal" style="--d:3"><li>七席独立表态，互不影响</li><li>好友通过邀请链接提交</li><li>全部提交后同时揭晓</li></ul>
+       <p class="slide-tag reveal" style="--d:4">SEALED UNTIL EVERY VOICE IS HEARD</p>
+       <button class="slide-more reveal" style="--d:5" type="button" data-slide-next>下一席：留下自己的决定 <i data-icon="arrow-right"></i></button>
+      </div>
+     </article>
+     <article class="ritual-slide" data-slide="3">
+      <div class="slide-visual">
+       <figure class="shot-frame">
+        <img src="/assets/shots/decide.jpg" alt="记账与历史：决定与完整问答归档">
+        <figcaption><span>04</span> 决定与账本</figcaption>
+       </figure>
+       <span class="shot-caption">THE DECISION IS ALWAYS YOURS</span>
+      </div>
+      <div class="slide-inner">
+       <p class="slide-eyebrow reveal" style="--d:0">STEP 04 · THE FINAL WORD</p>
+       <h3 class="reveal" style="--d:1">留下自己的决定</h3>
+       <p class="slide-copy reveal" style="--d:2">买下、放弃，或冷静几天。选择暂缓会冻结 3 / 7 天预算，到期自动释放；确认购买才计入支出。</p>
+       <ul class="slide-points reveal" style="--d:3"><li>买 / 暂缓 / 不买，自己决定</li><li>暂缓冻结预算，到期释放</li><li>决定与完整问答写进账本</li></ul>
+       <p class="slide-tag reveal" style="--d:4">THE DECISION IS ALWAYS YOURS</p>
+       <a class="slide-more reveal" style="--d:5" href="#ledger">去账本看看 <i data-icon="arrow-right"></i></a>
+      </div>
+     </article>
+     <article class="ritual-slide" data-slide="4">
+      <div class="slide-visual">
+       <figure class="shot-frame">
+        <img src="/assets/shots/seven-roman.jpg" alt="元老院中的七位先贤">
+        <figcaption><span>05</span> 七位先贤</figcaption>
+       </figure>
+       <span class="shot-caption">THE SEVEN VOICES</span>
+      </div>
+      <div class="slide-inner">
+       <p class="slide-eyebrow reveal" style="--d:0">THE SEVEN VOICES</p>
+       <h3 class="reveal" style="--d:1">七位先贤，各持一问</h3>
+       <p class="slide-copy reveal" style="--d:2">从追问本质到长期幸福，七种不同的目光，帮你重新看见同一个选择。点击任意一位，查看他会在席上问你的问题。</p>
+       <div id="slide-voices" class="slide-voices reveal" style="--d:3"></div>
+       <p class="slide-tag reveal" style="--d:4">SEVEN LENSES · ONE DECISION</p>
+       <button class="slide-more reveal" style="--d:5" type="button" data-action="new">召 集 元 老 院 <i data-icon="arrow-right"></i></button>
+      </div>
+     </article>
+    </div>
+   </div>
+   <div class="ritual-nav">
+    <button class="slide-arrow" type="button" data-slide-prev aria-label="上一张"><i data-icon="arrow-right"></i></button>
+    <div class="slide-dots" role="group" aria-label="切换议会页面">
+     <button type="button" class="active" data-slide-to="0" aria-label="召集：呈上你的心动">01</button>
+     <button type="button" data-slide-to="1" aria-label="质询：回答七次质询">02</button>
+     <button type="button" data-slide-to="2" aria-label="表态：听见不同观点">03</button>
+     <button type="button" data-slide-to="3" aria-label="裁决：留下自己的决定">04</button>
+     <button type="button" data-slide-to="4" aria-label="七贤：七位先贤介绍">05</button>
+    </div>
+    <button class="slide-arrow" type="button" data-slide-next aria-label="下一张"><i data-icon="arrow-right"></i></button>
+    <span class="slide-count" aria-hidden="true">01 / 05</span>
+   </div>
+   <p class="pager-hint">左右拖动卡片或使用方向键切换 · 上下滚动翻页</p>
+  </section>
+
+
+ 
+  <section class="pager-screen forum-screen" data-screen="2" aria-label="第三页：门廊">
+   <section class="forum-page pager-forum-page">
+     <div class="forum-topline"><a class="forum-back" href="#home">← 回到首页</a><span>THE SENATE · THE FORUM</span><span class="forum-identity">以 无名公民 的身份入席</span></div>
+     <div class="forum-map">
+      <span class="forum-orbit" aria-hidden="true"></span><span class="forum-orbit forum-orbit-secondary" aria-hidden="true"></span>
+      <div class="forum-heading">
+       <span class="forum-compass" aria-hidden="true">✦</span>
+       <p class="eyebrow">III / THE FORUM</p>
+       <h1>择一处<br>入席</h1>
+       <p>三条去处，同一张议事桌</p>
+      </div>
+      <button class="forum-portal portal-council" type="button" data-action="enter-council" aria-label="召集元老院，进入议事厅">
+       <span class="portal-number">01 / SENATVS</span>
+       <span class="portal-illustration"><span class="portal-art"><img src="/assets/hub-emblems.png" alt="" width="724" height="724" decoding="async"></span><span class="portal-enter" aria-hidden="true">→</span></span>
+       <span class="portal-label"><span class="portal-english">Senate</span><span class="portal-chinese">召集元老院</span><span class="portal-caption">呈上心动 · 逐席质询 · 独立表态</span></span>
+      </button>
+      <a class="forum-portal portal-ledger" href="#ledger" aria-label="打开账单，查看记账与历史">
+       <span class="portal-number">02 / RATIO</span>
+       <span class="portal-illustration"><span class="portal-art"><img src="/assets/hub-emblems.png" alt="" width="724" height="724" decoding="async"></span><span class="portal-enter" aria-hidden="true">→</span></span>
+       <span class="portal-label"><span class="portal-english">Ledger</span><span class="portal-chinese">账 单</span><span class="portal-caption">预算 · 议会历史 · 冷静期</span></span>
+      </a>
+      <a class="forum-portal portal-profile" href="#profile" aria-label="打开个人主页，查看身份与足迹">
+       <span class="portal-number">03 / CIVIS</span>
+       <span class="portal-illustration"><span class="portal-art"><img src="/assets/hub-emblems.png" alt="" width="724" height="724" decoding="async"></span><span class="portal-enter" aria-hidden="true">→</span></span>
+       <span class="portal-label"><span class="portal-english">Profile</span><span class="portal-chinese">个人主页</span><span class="portal-caption">身份 · 足迹 · 个人偏好</span></span>
+      </a>
+      <p class="forum-marginalia">A MOMENT OF THOUGHT,<br>A BETTER DECISION.<span>先贤之言仅供参考<br>最终决定权始终在你</span></p>
+     </div>
+     <footer class="forum-footer"><span>THE SENATE · MMXXVI</span><span class="forum-session-note">你的议会，尚未开庭</span><span class="forum-footer-links"><a href="#chamber" class="forum-resume" hidden>继续上一场 ↑</a><a href="#home">回到首页 ↑</a></span></footer>
+   </section>
+  </section>
+</div>
+ <nav class="pager-dots" aria-label="页面导航">
+  <button type="button" class="active" data-goto-page="0" aria-label="第一页：The Senate">I</button>
+  <button type="button" data-goto-page="1" aria-label="第二页：四步深思">II</button>
+  <button type="button" data-goto-page="2" aria-label="第三页：门廊">III</button>
+ </nav>
+</div>
+</div>
+<div id="chamber-view" class="view" hidden></div><div id="friend-view" class="view" hidden></div><div id="ledger-view" class="view" hidden></div><div id="profile-view" class="view" hidden></div>
+</main>
+<dialog id="proposal-dialog" class="paper-dialog"><form id="proposal-form"><button class="close-btn" type="button" data-action="close" aria-label="关闭"><i data-icon="x"></i></button><div class="proposal-layout"><div class="proposal-fields"><p class="eyebrow">A NEW ASSEMBLY</p><h2>呈上你的心动</h2><p class="muted">先说说这件让你犹豫的东西</p><label>商品名称<input name="product" required maxlength="100" placeholder="例如：一副降噪耳机" autocomplete="off"></label><div class="form-columns"><label>商品价格 · ¥<input name="price" type="number" min="0.01" max="1000000000" step="0.01" required placeholder="0.00"></label><label>当前可用闲钱 · ¥<input name="cash" type="number" min="0" max="1000000000000" step="0.01" required placeholder="扣除生活和应急开支"></label></div><label>为什么想买<textarea name="reason" required maxlength="1500" rows="3" placeholder="它能解决什么问题？你期待它带来什么？"></textarea></label><div class="form-note"><i data-icon="users"></i><span>从所选角色包随机抽取；进入会场后仍可替换为好友</span></div></div><div class="proposal-council-col"><div class="council-config"><div class="config-head"><p class="eyebrow">COMPOSE THE COUNCIL</p><span id="council-summary" class="council-summary"></span></div><div class="config-block"><p class="config-label">先贤角色包</p><div id="pack-options" class="pack-options"></div></div><div class="config-block"><p class="config-label">议会规模</p><div id="size-options" class="size-options"></div></div><div id="council-preview" class="council-preview" aria-live="polite"></div></div><p id="proposal-error" class="form-error" role="alert"></p><button class="button primary w-full" type="submit">进入议事厅 <i data-icon="arrow-right"></i></button><button class="sample-link" type="button" data-action="fill-sample">填入演示商品</button></div></div></form></dialog>
+<dialog id="detail-dialog" class="paper-dialog wide-dialog"><button class="close-btn" data-action="close" aria-label="关闭"><i data-icon="x"></i></button><div id="detail-content"></div></dialog>
+<div id="toast" role="status" aria-live="polite"></div>
+<div id="ai-loading" class="ai-loading" role="status" aria-live="polite" hidden><span class="ai-spinner" aria-hidden="true"></span><p>先贤正在思考…</p><small>DeepSeek 正在生成质询与表态</small></div>
+</body></html>

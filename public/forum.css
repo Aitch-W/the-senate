@@ -1,0 +1,168 @@
+/* The Forum: three illustrated destinations on a classical celestial map. */
+.site-header.forum-header{background:#151510;border-color:#b4935630}
+.site-header nav{gap:30px;margin-right:32px}
+#profile-view{color:#eee3c8;background:#141510;background-image:radial-gradient(ellipse at 100% 40%,#8e542325,transparent 40%),radial-gradient(ellipse at 15% 80%,#58613b17,transparent 48%),url('/assets/forum-grain.svg');min-height:calc(100svh - 76px)}
+.forum-screen{color:#eee3c8;background:#141510;background-image:radial-gradient(ellipse at 100% 40%,#8e542325,transparent 40%),radial-gradient(ellipse at 15% 80%,#58613b17,transparent 48%),url('/assets/forum-grain.svg');height:100svh;padding-top:76px;box-sizing:border-box;overflow:hidden}
+.forum-page{position:relative;max-width:1680px;margin:auto;padding:24px 5% 20px;overflow:hidden}
+.forum-topline{display:flex;align-items:center;justify-content:space-between;color:#b9a17b;font:10px Georgia,SimSun,serif;letter-spacing:2px;position:relative;z-index:2}
+.forum-back{display:inline-flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid #b99b5938;letter-spacing:2px;font-family:SimSun,serif;font-size:11px}
+.forum-back:hover{color:#f2d69e;border-color:#b99b59}
+.forum-map{position:relative;height:calc(100svh - 185px);min-height:590px;max-height:950px;isolation:isolate}
+.forum-orbit{position:absolute;pointer-events:none;border:1px solid #b09a6430;border-radius:50%;width:110%;height:100%;left:-30%;top:-32%;transform:rotate(-19deg);z-index:-1}
+.forum-orbit:after{content:'';position:absolute;inset:21%;border:1px solid #b09a641a;border-radius:50%}
+.forum-orbit-secondary{width:100%;height:160%;left:36%;top:0;transform:rotate(27deg);border-color:#b09a641c}
+.forum-orbit-secondary:before{content:'';position:absolute;left:12%;top:24%;width:8px;height:8px;border-radius:50%;background:#ac8753;box-shadow:0 0 22px #e2be7055}
+.forum-heading{position:absolute;left:36%;top:10%;width:30%;text-align:center;pointer-events:none}
+.forum-heading .eyebrow{font-size:9px;letter-spacing:5px;color:#ab8c5a}
+.forum-heading h1{font:italic clamp(34px,3.9vw,64px)/1.2 Georgia,serif;letter-spacing:-2px;margin:15px 0 13px;color:#e7dcc0}
+.forum-heading p:last-child{font:11px/2 SimSun,serif;color:#998b70;letter-spacing:3px}
+.forum-compass{display:block;color:#b99457;font:24px Georgia,serif;margin-bottom:12px}
+.forum-portal{position:absolute;display:flex;flex-direction:column;align-items:center;text-align:center;width:31%;max-width:420px;padding:0;isolation:isolate;outline-offset:12px;cursor:pointer}
+.portal-council{left:1%;top:2%;--enter-x:-22px;--enter-y:12px;--portal-delay:.08s}
+.portal-ledger{right:0;top:-1%;--enter-x:22px;--enter-y:8px;--portal-delay:.2s}
+.portal-profile{left:36%;bottom:0;width:28%;max-width:365px;--enter-x:0px;--enter-y:25px;--portal-delay:.32s}
+.portal-illustration{position:relative;display:block;width:100%;aspect-ratio:1;transition:transform .6s cubic-bezier(.2,.7,.2,1),filter .6s;filter:drop-shadow(0 18px 19px #0009)}
+.portal-art{display:block;position:relative;overflow:hidden;width:100%;aspect-ratio:1;pointer-events:none}
+.portal-art img{position:absolute;inset:0 auto auto 0;width:300%;max-width:none;height:100%;user-select:none;pointer-events:none}
+.portal-ledger .portal-art img,.profile-ledger-art img{left:-100%}
+.portal-profile .portal-art img,.profile-portrait .portal-art img{left:-200%}
+.portal-illustration:before{content:'';position:absolute;inset:8%;border:1px solid #b38c485c;border-radius:50%;transform:rotate(-12deg) scale(1.13,.88);z-index:-1;transition:transform .7s,border-color .5s}
+.portal-ledger .portal-illustration:before{inset:13% 8%;border-radius:1px;transform:rotate(9deg)}
+.portal-profile .portal-illustration:before{inset:5%;transform:rotate(-14deg) scale(1.17,.92)}
+.portal-number{position:absolute;top:8%;left:0;color:#b69966;font:10px Georgia,serif;letter-spacing:2px;z-index:4;padding:3px 8px;background:#141510b8;border:1px solid #b4935633;backdrop-filter:blur(2px)}
+.portal-number:before{content:'—';margin-right:9px;color:#775d35}
+.portal-label{position:relative;display:block;margin-top:-17px;z-index:2;transition:transform .5s}
+.portal-english{display:block;color:#f1e7cf;font:small-caps clamp(34px,4vw,65px)/1.05 Georgia,'Times New Roman',serif;letter-spacing:-1.8px;text-shadow:0 4px 24px #000}
+.portal-english:first-letter{font-size:1.3em}
+.portal-chinese{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:5px;font:15px/1.8 SimSun,serif;letter-spacing:5px;color:#d1ba8f}
+.portal-chinese:before,.portal-chinese:after{content:'';height:1px;width:22px;background:#9d78444f}
+.portal-caption{display:block;font:9px/1.8 SimSun,serif;letter-spacing:2px;color:#a89779;margin-top:8px}
+.portal-enter{position:absolute;right:-26px;top:45%;color:#cda262;font:24px Georgia,serif;opacity:0;transform:translateX(-8px);transition:transform .4s,opacity .4s}
+.forum-portal:hover .portal-illustration,.forum-portal:focus-visible .portal-illustration{transform:translateY(-9px) scale(1.035);filter:drop-shadow(0 16px 25px #bc8a3530) brightness(1.07)}
+.forum-portal:hover .portal-illustration:before,.forum-portal:focus-visible .portal-illustration:before{border-color:#d2ab7080;transform:rotate(0) scale(1.13,.92)}
+.forum-portal:hover .portal-label,.forum-portal:focus-visible .portal-label{transform:translateY(-3px)}
+.forum-portal:hover .portal-enter,.forum-portal:focus-visible .portal-enter{opacity:1;transform:none}
+.forum-screen.is-active.animate .forum-portal{animation:portalArrive .9s cubic-bezier(.2,.7,.2,1) var(--portal-delay) both}
+@keyframes portalArrive{from{opacity:0;transform:translate(var(--enter-x),var(--enter-y))}to{opacity:1;transform:none}}
+.forum-marginalia{position:absolute;bottom:13%;left:1%;max-width:210px;font:8px/1.9 Georgia,serif;letter-spacing:2px;color:#82704e;pointer-events:none}
+.forum-marginalia span{display:block;margin-top:12px;font:10px/1.8 SimSun,serif;letter-spacing:2px;color:#9c8a67}
+.forum-footer{display:flex;justify-content:space-between;align-items:center;gap:20px;border-top:1px solid #ac8a5330;padding-top:17px;font:9px/1.6 Georgia,SimSun,serif;letter-spacing:2px;color:#9b8055}
+.ritual-entrance-link{position:absolute;right:0;top:0;display:inline-flex;align-items:center;gap:12px;padding:10px 0;color:#dfbd7b;border-bottom:1px solid #b9945766;font:12px SimSun,serif;letter-spacing:2px}
+.ritual-entrance-link .icon{width:16px;height:16px}
+.ritual-screen .act-head{position:relative}
+.app-map-link{display:inline-block;margin-top:24px;color:#8d6d3d;border-bottom:1px solid #a98c5d55;font:12px SimSun,serif;padding:5px 0}
+.ledger-page .page-title .eyebrow a{color:#9b783c;border-bottom:1px solid #b69d7655;padding-bottom:3px}
+/* A personal home, backed by the existing browser-local profile and ledger. */
+.profile-page{max-width:1180px;margin:auto;padding:28px 40px 70px}
+.profile-title{display:flex;align-items:end;justify-content:space-between;margin:32px 0 32px}
+.profile-title h1{font:38px SimSun,serif;letter-spacing:5px;margin-top:13px}
+.profile-title p:last-child{font:11px/1.8 SimSun,serif;color:#b1a082;letter-spacing:1px}
+.profile-layout{display:grid;grid-template-columns:260px 1fr;gap:52px}
+.profile-portrait{position:relative;padding:0 6px 22px;text-align:center;border-bottom:1px solid #a2845144}
+.profile-portrait .portal-art{filter:drop-shadow(0 10px 25px #0007)}
+.profile-portrait h2{font:26px/1.5 SimSun,serif;letter-spacing:3px;margin-top:12px;overflow-wrap:anywhere}
+.profile-portrait p{color:#a78d61;font:10px Georgia,serif;letter-spacing:3px;margin-top:10px}
+.profile-portrait blockquote{font:12px/2.1 SimSun,serif;color:#b5a486;margin:22px 4px 0;overflow-wrap:anywhere}
+.profile-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;padding-bottom:25px;border-bottom:1px solid #ac8a5333}
+.profile-stat{padding:2px 0 8px}
+.profile-stat strong{display:block;font:34px Georgia,serif;color:#d0ac6d}
+.profile-stat span{display:block;font:10px SimSun,serif;color:#ae9d7e;letter-spacing:2px;margin-top:11px}
+.profile-form{margin-top:28px;padding:30px 34px;background:#e9d8b2;color:#5c4630;border:1px solid #b9985e55;box-shadow:0 12px 35px #0003;background-image:radial-gradient(#986d1a12 .6px,transparent .8px);background-size:5px 5px}
+.profile-form h2{font:20px SimSun,serif;letter-spacing:3px;margin-bottom:20px}
+.profile-form label{display:block;font:12px/1.8 SimSun,serif;letter-spacing:1px;margin-top:18px}
+.profile-form input,.profile-form textarea{display:block;width:100%;margin-top:8px;border:1px solid #a88b5b77;background:#fff6df55;color:#4c3927;padding:11px 12px;border-radius:0;resize:vertical;letter-spacing:1px;line-height:1.7}
+.profile-form .profile-motion{display:flex;align-items:center;gap:10px;letter-spacing:0}
+.profile-motion input{width:16px;height:16px;margin:0;accent-color:#876235}
+.profile-form .button{margin-top:22px;min-width:160px}
+.profile-save-note{display:inline-block;color:#806d50;font:10px/1.8 SimSun,serif;margin:15px 0 0 14px}
+.profile-history{margin-top:30px;border-top:1px solid #ac8a5333;padding-top:25px}
+.profile-history header{display:flex;justify-content:space-between;gap:15px;margin-bottom:12px;align-items:center}
+.profile-history h2{font:20px SimSun,serif;letter-spacing:3px}
+.profile-history header a{color:#cba668;font:11px SimSun,serif;border-bottom:1px solid #a4844c55;padding-bottom:3px}
+.profile-history-row{display:grid;grid-template-columns:1fr auto auto;gap:18px;align-items:center;border-bottom:1px solid #ac8a5322;padding:15px 0;color:#c1af8e;font:12px SimSun,serif}
+.profile-history-row button{text-align:left;overflow-wrap:anywhere;line-height:1.7;color:#e0d0ae;padding:0}
+.profile-history-row time{font:10px Georgia,serif;color:#897b62}
+.profile-empty{font:12px/2 SimSun,serif;color:#ac9a79;padding:20px 0}
+@media(min-width:1700px){.forum-map{min-height:720px}.forum-heading{top:14%}.portal-profile{bottom:2%}}
+@media(max-height:780px) and (min-width:901px){.forum-map{min-height:520px;height:calc(100svh - 178px)}.forum-portal{width:27%;max-width:330px}.portal-council{left:3%;top:0}.portal-ledger{right:2%;top:0}.portal-profile{width:25%;left:38%;bottom:0}.portal-english{font-size:44px}.portal-caption{font-size:8px}.forum-heading{top:7%}.forum-heading h1{font-size:42px}.forum-marginalia{bottom:10%}}
+@media(max-width:1000px){.site-header nav{gap:20px;margin-right:8px}.forum-heading{left:34%;width:33%;top:18%}.forum-heading h1{font-size:39px}.forum-heading p:last-child{font-size:9px;letter-spacing:1px}.forum-map{min-height:590px}.portal-english{font-size:42px}.portal-chinese{font-size:14px}.portal-profile{bottom:5%;width:31%;left:35%}.forum-marginalia{max-width:170px;font-size:7px}.profile-layout{grid-template-columns:210px 1fr;gap:30px}.profile-form{padding:24px}.profile-page{padding:25px 30px 55px}}
+@media(max-width:700px){.site-header{padding:0 14px}.brand{font-size:18px;gap:6px}.site-header nav{gap:11px;margin-right:0;font-size:10px;letter-spacing:0}.pref-toggle{margin-left:8px;padding:4px 7px}.pref-toggle .pref-text{display:none}.pref-short{display:inline}#profile-view{min-height:calc(100svh - 66px)}.forum-page{padding:18px 22px 22px}.forum-topline>span{font-size:7px;letter-spacing:1px}.forum-back{font-size:10px;letter-spacing:1px}.forum-map{height:740px;min-height:0;max-height:none}.forum-heading{top:24px;left:20%;width:60%}.forum-compass{font-size:19px;margin-bottom:8px}.forum-heading .eyebrow{font-size:7px;letter-spacing:3px}.forum-heading h1{font-size:34px;margin:8px 0}.forum-heading p:last-child{font-size:9px;letter-spacing:2px}.forum-portal{width:52%;max-width:235px}.portal-council{top:145px;left:0}.portal-ledger{top:270px;right:0}.portal-profile{bottom:0;left:4%;width:51%}.portal-english{font-size:34px;letter-spacing:-1px}.portal-label{margin-top:-9px}.portal-chinese{font-size:12px;letter-spacing:3px;gap:8px}.portal-chinese:before,.portal-chinese:after{width:15px}.portal-caption{font-size:8px;letter-spacing:1px;margin-top:5px}.portal-enter{right:-16px;top:35%;font-size:18px}.portal-number{font-size:8px;top:2%}.forum-marginalia{left:auto;right:0;bottom:55px;max-width:130px;font-size:6px;letter-spacing:1px}.forum-marginalia span{font-size:9px;letter-spacing:1px}.forum-orbit{width:160%;height:70%;left:-50%;top:10%}.forum-orbit-secondary{width:140%;height:95%;left:30%;top:30%}.forum-footer{font-size:7px;letter-spacing:1px;gap:8px}.forum-footer span:nth-child(2){display:none}.ritual-entrance-link{top:0;font-size:10px;gap:6px;padding:5px 0}.ritual-entrance-link .icon{width:13px}.profile-page{padding:20px 22px 45px}.profile-title{margin:24px 0}.profile-title h1{font-size:29px}.profile-title>p{display:none}.profile-layout{grid-template-columns:1fr;gap:24px}.profile-portrait{max-width:230px;margin:auto;padding-bottom:20px}.profile-portrait .portal-art{width:160px;margin:auto}.profile-portrait h2{font-size:23px;margin-top:5px}.profile-portrait blockquote{font-size:11px;margin-top:12px}.profile-stats{text-align:center;gap:10px;padding-bottom:16px}.profile-stat strong{font-size:29px}.profile-stat span{font-size:9px;letter-spacing:1px}.profile-form{margin-top:22px;padding:24px 22px}.profile-save-note{display:block;margin:13px 0 0}.profile-history-row{gap:10px;font-size:11px}.profile-history-row time{font-size:8px}}
+@media(min-width:501px) and (max-width:700px){.forum-map{height:900px}.forum-portal{width:48%;max-width:280px}.portal-ledger{top:350px}.portal-profile{width:48%}}
+@media(prefers-reduced-motion:reduce){.forum-screen .forum-portal{animation:none!important;opacity:1!important;transform:none!important}}
+html.no-motion .forum-screen .forum-portal{opacity:1!important;transform:none!important}
+.forum-footer-links{display:flex;align-items:center;gap:18px;margin-left:auto}
+.forum-footer-links a{border-bottom:1px solid #a4844c55;padding-bottom:2px}
+@media(min-width:1001px){.forum-heading{top:3%;width:34%}.forum-heading h1{font-size:clamp(34px,3.3vw,52px);margin:8px 0 10px}.portal-profile{width:22%;max-width:300px;bottom:0}}
+@media(max-width:900px){.profile-stats{grid-template-columns:1fr 1fr}.profile-stat:nth-child(3){grid-column:1/-1}}
+@media(max-width:700px){.profile-stat strong{font-size:28px;white-space:nowrap}.forum-marginalia{display:none}.forum-heading p:last-child{display:none}}
+
+/* Page III: the forum is also the third pager screen. */
+.forum-screen .forum-page{height:100%;max-width:1680px;margin:auto;padding:12px 5% 10px;display:flex;flex-direction:column}
+.forum-screen .forum-topline{flex:none}
+.forum-screen .forum-map{flex:1;height:auto;min-height:0;max-height:none}
+.forum-screen .forum-footer{flex:none;margin-top:6px;padding-top:10px}
+@media(min-width:1001px) and (max-height:820px){
+  .forum-screen .forum-heading{top:1%}
+  .forum-screen .forum-heading h1{font-size:42px;margin:5px 0 6px}
+  .forum-screen .forum-portal{width:27%;max-width:330px}
+  .forum-screen .portal-profile{width:20%;max-width:280px}
+}
+@media(max-width:700px){
+  .forum-screen{padding-top:66px}
+  .forum-screen .forum-page{padding:8px 18px 8px}
+  .forum-screen .forum-topline>span{font-size:7px;letter-spacing:1px}
+  .forum-screen .forum-map{flex:1;height:auto;min-height:0;max-height:none}
+  .forum-screen .forum-heading{top:6px;left:20%;width:60%}
+  .forum-screen .forum-heading h1{font-size:32px;margin:6px 0}
+  .forum-screen .forum-portal{width:46%;max-width:210px}
+  .forum-screen .portal-council{top:125px;left:0}
+  .forum-screen .portal-ledger{top:240px;right:0}
+  .forum-screen .portal-profile{bottom:0;left:2%;width:46%}
+  .forum-screen .portal-english{font-size:31px;letter-spacing:-1px}
+  .forum-screen .portal-label{margin-top:-7px}
+  .forum-screen .portal-chinese{font-size:11px;letter-spacing:2px;gap:7px}
+  .forum-screen .portal-caption{font-size:7px;letter-spacing:.5px;margin-top:3px}
+  .forum-screen .portal-number{font-size:7px;top:2%;padding:2px 5px}
+  .forum-screen .forum-footer{font-size:6px;letter-spacing:1px;padding-top:4px;margin-top:2px;gap:6px}
+  .forum-screen .forum-footer>span:not(.forum-footer-links){display:none}
+}
+@media(max-width:767px){#home-pager[data-page="2"] .pager-dots{top:104px}}
+@media(min-width:701px) and (max-width:1000px){
+  .forum-screen .forum-heading{top:2%}
+  .forum-screen .forum-heading h1{font-size:36px;margin:6px 0}
+  .forum-screen .forum-portal{width:27%;max-width:300px}
+  .forum-screen .portal-profile{width:24%;max-width:260px;bottom:0}
+}
+#home-pager[data-page="2"] .pager-dots button{color:#f0e2c6;border-color:#f0e2c666;background:#17110a66}
+#home-pager[data-page="2"] .pager-dots button.active{background:#ead9b8;color:#2a2014;border-color:#ead9b8}
+
+/* Developer mode on the profile page. */
+.dev-panel{position:relative;margin-top:30px;padding:27px 30px;border:1px solid #b4935644;background:#15120e;background-image:radial-gradient(ellipse at 18% 0,#6d4b2422,transparent 55%),url('/assets/forum-grain.svg');color:#e7d7b9;isolation:isolate}
+.dev-panel:before{content:'';position:absolute;inset:8px;border:1px solid #b4935622;pointer-events:none}
+.dev-panel header{position:relative;z-index:1;display:flex;align-items:flex-start;justify-content:space-between;gap:24px}
+.dev-panel .eyebrow{font-size:9px;letter-spacing:4px;color:#b9975d}
+.dev-panel h2{font:24px/1.5 SimSun,serif;letter-spacing:2px;margin-top:7px;color:#f0e2c6}
+.dev-toggle{display:flex;align-items:center;gap:10px;cursor:pointer;flex:none;padding-top:4px}
+.dev-toggle input{position:absolute;width:1px;height:1px;opacity:0;margin:0;pointer-events:none}
+.dev-track{width:40px;height:21px;border:1px solid #8f744b;border-radius:20px;background:#0d0a07;position:relative;transition:background .25s,border-color .25s}
+.dev-thumb{position:absolute;left:2px;top:2px;width:15px;height:15px;border-radius:50%;background:#8f7a58;transition:transform .25s,background .25s}
+.dev-toggle input:checked + .dev-track{background:#846331;border-color:#d0ad6b}
+.dev-toggle input:checked + .dev-track .dev-thumb{transform:translateX(19px);background:#f3dfb5}
+.dev-toggle input:focus-visible + .dev-track{outline:2px solid #d0ad6b;outline-offset:3px}
+.dev-toggle b{font:10px SimSun,serif;letter-spacing:1px;color:#b9a17b;font-weight:400}
+.dev-note{position:relative;z-index:1;margin-top:16px;font:11px/2 SimSun,serif;letter-spacing:1px;color:#a69477}
+.dev-form{position:relative;z-index:1;margin-top:18px;border-top:1px solid #b4935630;padding-top:18px}
+.dev-form label{display:block;font:11px/1.8 SimSun,serif;letter-spacing:1px;color:#baa686;margin-top:14px}
+.dev-panel input,.dev-panel select{display:block;width:100%;margin-top:7px;border:1px solid #6f5838;background:#0d0a07;color:#f1e2c4;padding:10px 12px;border-radius:0;font:12px/1.6 SimSun,serif;letter-spacing:1px}
+.dev-panel input:focus,.dev-panel select:focus{outline:1px solid #b99457;border-color:#b99457}
+.dev-row{display:grid;grid-template-columns:1fr 1.5fr;gap:18px}
+.dev-actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:18px}
+.dev-panel .button{border-color:#a88752;color:#f1e2c4;background:#2b2115;min-height:38px;padding:9px 16px;font-size:12px}
+.dev-panel .button.primary{background:#7c5b30;border-color:#7c5b30;color:#f8eed8}
+.dev-panel .button:hover{background:#3a2b1a}
+.dev-test{background:#17120d!important}
+.dev-status{font:10px/1.7 SimSun,serif;letter-spacing:1px;color:#a69477}
+.dev-status.ok{color:#a8b985}
+.dev-status.bad{color:#c98a75}
+.dev-security{margin-top:13px;font:9px/1.9 SimSun,serif;letter-spacing:1px;color:#7f6e55}
+@media(max-width:700px){.dev-panel{padding:22px 20px}.dev-panel header{flex-direction:column;gap:10px}.dev-row{grid-template-columns:1fr}.dev-actions{align-items:flex-start}.dev-status{flex-basis:100%}}

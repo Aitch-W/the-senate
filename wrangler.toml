@@ -1,0 +1,20 @@
+name = "senate-council"
+main = "worker.mjs"
+compatibility_date = "2026-11-07"
+workers_dev = true
+
+[assets]
+directory = "./public"
+binding = "ASSETS"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "senate-council-rooms"
+database_id = "dbff6aba-72e2-4893-aebe-65e6a9acf54f"
+
+[[routes]]
+pattern = "senate.aitchwcx.me"
+custom_domain = true
+
+[triggers]
+crons = ["17 4 * * *"]
