@@ -1,12 +1,12 @@
-/* Shared-canvas plates: architecture / people / foreground desk / live type. */
+/* Shared canvas: intact seated senators / one orator / foreground desk / type. */
 .hero{--mx:0;--my:0;isolation:isolate}
 .hero-art{inset:-2.5%;transform:none;will-change:auto;pointer-events:none}
 .hero-layer{position:absolute;width:100%;height:100%;inset:0;object-fit:cover;object-position:center;opacity:0;pointer-events:none;transition:opacity .65s ease}
 .layers-ready .hero-layer{opacity:1}
 .layers-ready .hero-art{background:none}
-.hero-layer-background{transform:translate(calc(var(--mx)*-3px),calc(var(--my)*-2px)) scale(1.012)}
-.hero-layer-people{transform:translate(calc(var(--mx)*-10px),calc(var(--my)*-5px)) scale(1.006);filter:drop-shadow(3px 7px 6px #120b0638)}
-.hero-layer-table{transform:translate(calc(var(--mx)*-19px),calc(var(--my)*-9px)) scale(1.008);filter:drop-shadow(0 -3px 8px #170e0545)}
+.hero-layer-background{transform:translate(calc(var(--mx)*-2px),calc(var(--my)*-1px))}
+.hero-layer-people{transform:translate(calc(var(--mx)*-8px),calc(var(--my)*-4px))}
+.hero-layer-table{transform:translate(calc(var(--mx)*-10px),calc(var(--my)*-4px))}
 .hero-screen .hero-content{translate:calc(var(--mx)*6px) calc(var(--my)*3px);text-shadow:0 5px 22px #160e0877}
 .hero-shade{pointer-events:none}
 /* A parchment scroll with illuminated edges, rolled ends and a wax seal. */

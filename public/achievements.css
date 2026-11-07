@@ -1,0 +1,45 @@
+/* Anonymous guest portrait: keep the illustration aligned with the bust base. */
+.seat .bust .friend-avatar{display:block;width:100%;height:100%;object-fit:contain;object-position:center bottom;filter:drop-shadow(0 3px 3px #442c1822)}
+.record-seat .friend-avatar{display:block;width:40px;height:52px;border:1px solid #c3ae86;border-radius:50% 50% 0 0/34% 34% 0 0;background:#e8dcc4;object-fit:contain;object-position:center bottom}
+.pool-chip.friend .friend-avatar{display:block;width:44px;height:56px;max-width:none;object-fit:contain;object-position:center bottom}
+.friend-portrait-preview{display:block;width:100%;height:100%;object-fit:contain;object-position:center bottom}
+/* Medals live on their own shelf in the personal home. */
+.profile-achievement-link{display:inline-flex;align-items:center;gap:9px;padding:9px 0;color:#d4b377;border-bottom:1px solid #a88a5455;font:12px SimSun,serif;letter-spacing:2px}
+.profile-achievement-link:hover{color:#f1d6a4;border-color:#d4b377}
+.profile-title .profile-intro{display:flex;align-items:center;gap:28px}
+.achievement-gallery{margin-top:48px;padding:35px 0 10px;border-top:1px solid #b4935655;scroll-margin-top:30px}
+.achievement-heading{display:flex;align-items:flex-end;justify-content:space-between;gap:22px;margin-bottom:18px}
+.achievement-heading .eyebrow{font-size:9px;letter-spacing:4px;color:#a88a55}
+.achievement-heading h2{font:29px/1.5 SimSun,serif;letter-spacing:5px;margin-top:9px;color:#ecdfc0}
+.achievement-heading p{font:11px/1.9 SimSun,serif;color:#a99472;letter-spacing:1px;margin-top:9px}
+.achievement-counter{flex:none;text-align:right;font:11px SimSun,serif;letter-spacing:2px;color:#aa926b;padding-bottom:6px}
+.achievement-counter strong{font:34px Georgia,serif;color:#d7b775;letter-spacing:0}
+.achievement-counter span{font:20px Georgia,serif;color:#8d7754;margin:0 6px}
+.achievement-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px 22px}
+.achievement-card{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;min-width:0;padding:19px 12px 20px;border-bottom:1px solid #b493562e;background:radial-gradient(ellipse at 50% 28%,#c4933320,transparent 58%);transition:background .3s,border-color .3s;cursor:pointer}
+.achievement-card:hover,.achievement-card:focus-visible{background:radial-gradient(ellipse at 50% 28%,#d2a54b30,transparent 65%);border-color:#c1a36a77}
+.achievement-art{width:150px;max-width:100%;aspect-ratio:1;object-fit:contain;display:block;filter:drop-shadow(0 6px 13px #0005);transition:filter .4s,transform .4s;pointer-events:none}
+.achievement-card:hover .achievement-art,.achievement-card:focus-visible .achievement-art{transform:translateY(-5px) rotate(-2deg)}
+.achievement-card.is-locked .achievement-art{filter:grayscale(.94) saturate(.2) brightness(.75) drop-shadow(0 6px 13px #0004);opacity:.65}
+.achievement-card.is-locked:hover .achievement-art,.achievement-card.is-locked:focus-visible .achievement-art{filter:grayscale(.65) saturate(.4) brightness(.9);opacity:.85}
+.achievement-state{display:block;font:9px/1.6 SimSun,serif;letter-spacing:2px;color:#bda166;margin-top:9px;min-height:15px}
+.is-locked .achievement-state{color:#94866c}
+.achievement-card strong{font:18px/1.6 SimSun,serif;letter-spacing:2px;color:#e9d9b5;margin-top:5px}
+.achievement-condition{font:10px/1.9 SimSun,serif;color:#ac9979;display:block;min-height:57px;margin-top:9px;max-width:210px;overflow-wrap:anywhere;letter-spacing:.4px}
+.achievement-meter{display:block;width:78%;height:3px;appearance:none;border:0;background:#77613a30;color:#b99c60;border-radius:0;margin-top:14px;overflow:hidden}
+.achievement-meter::-webkit-progress-bar{background:#77613a30}
+.achievement-meter::-webkit-progress-value{background:linear-gradient(90deg,#927340,#d3b474)}
+.achievement-meter::-moz-progress-bar{background:#c0a263}
+.achievement-progress{display:block;font:9px/1.6 Georgia,SimSun,serif;color:#968361;margin-top:8px;letter-spacing:1px}
+.achievement-footnote{font:10px/1.9 SimSun,serif;color:#8e7d60;margin-top:24px;letter-spacing:1px}
+.achievement-detail{text-align:center;padding:4px 5px 15px}
+.achievement-detail-art{width:230px;max-width:75%;aspect-ratio:1;object-fit:contain;margin:15px auto;filter:drop-shadow(0 8px 15px #79541a33)}
+.achievement-detail.is-locked .achievement-detail-art{filter:grayscale(.9) brightness(.85);opacity:.75}
+.achievement-detail .eyebrow{font-size:10px;letter-spacing:3px}
+.achievement-detail h2{font-size:30px;letter-spacing:4px}
+.achievement-detail-symbol{font:11px/1.8 SimSun,serif;color:#927750;margin:8px 0 20px;letter-spacing:2px}
+.achievement-detail-condition{font:14px/2 SimSun,serif;color:#6d563a;max-width:460px;margin:auto}
+.achievement-detail-status{font:12px/1.9 SimSun,serif;color:#8c6d3e;border-top:1px solid #bca16b55;padding-top:18px;margin-top:22px;letter-spacing:1px}
+.achievement-detail .achievement-meter{margin:16px auto 0;max-width:300px;height:4px}
+@media(max-width:1000px){.achievement-grid{gap:14px}.achievement-art{width:130px}.achievement-condition{min-height:76px}.profile-title .profile-intro{gap:16px}}
+@media(max-width:700px){.achievement-gallery{margin-top:32px;padding-top:26px}.achievement-heading{align-items:start;gap:12px}.achievement-heading h2{font-size:25px;letter-spacing:3px}.achievement-heading p{font-size:10px;letter-spacing:.4px;max-width:235px}.achievement-counter{font-size:9px;white-space:nowrap;padding-top:22px;letter-spacing:0}.achievement-counter strong{font-size:28px}.achievement-counter span{font-size:16px;margin:0 3px}.achievement-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 12px}.achievement-card{padding:15px 7px 18px}.achievement-art{width:125px}.achievement-card strong{font-size:16px;letter-spacing:1px}.achievement-condition{font-size:10px;min-height:76px;margin-top:7px}.achievement-state{font-size:8px;letter-spacing:1px}.achievement-progress{font-size:8px;letter-spacing:.2px}.profile-title .profile-intro>p{display:none}.profile-achievement-link{font-size:11px;letter-spacing:1px}.achievement-detail-art{width:190px}.achievement-detail h2{font-size:26px}.achievement-detail-condition{font-size:13px}.achievement-footnote{font-size:9px}}
